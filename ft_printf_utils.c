@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_printf_utils.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: selcyilm <selcyilm@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/11/19 15:35:17 by selcyilm      #+#    #+#                 */
+/*   Updated: 2023/11/19 15:37:31 by selcyilm      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 size_t	ft_strlen(const char *str)
@@ -18,7 +30,6 @@ int	ft_putchar(int c)
 
 int	ft_putstr(const char *s)
 {
-	int	i;
 	if (!s)
 	{
 		write(1, "(null)", 6);
@@ -31,6 +42,7 @@ int	ft_putstr(const char *s)
 int	ft_hex(va_list arg, const char *hex)
 {
 	int	len;
+
 	len = 0;
 	len = ft_putpos((unsigned int)va_arg(arg, int), hex);
 	if (len == 0)
@@ -40,8 +52,8 @@ int	ft_hex(va_list arg, const char *hex)
 
 int	ft_putpos(unsigned int nb, const char *hex)
 {
-	int	a;
-	int	len;
+	int			a;
+	int			len;
 	long long	tmp;
 
 	tmp = (long long)nb;
@@ -60,26 +72,4 @@ int	ft_putpos(unsigned int nb, const char *hex)
 	}
 	else
 		return (0);
-}
-
-int	ft_putnbr(int nb)
-{
-	int	i;
-	int	n;
-
-	i = 0;
-	if (i == -2147483648)
-		return (ft_putstr("-2147483648"));
-	if (nb < 0)
-	{
-		i += write(1, "-", 1);
-		nb *= -1;
-	}
-	if (nb >= 10)
-	{
-		i += ft_putnbr(nb / 10);
-	}
-	n = nb % 10 + 48;
-	i += write(1, &n, 1);
-	return (i);
 }
