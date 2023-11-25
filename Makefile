@@ -1,4 +1,4 @@
-SRCS	= ft_printf_main.c ft_printf_utils.c
+SRCS	= ft_printf_main.c ft_printf_utils.c ft_putptr.c
 
 OBJS	= $(SRCS:.c=.o)
 

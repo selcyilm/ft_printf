@@ -6,7 +6,7 @@
 /*   By: selcyilm <selcyilm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/19 12:59:10 by selcyilm      #+#    #+#                 */
-/*   Updated: 2023/11/19 15:36:04 by selcyilm      ########   odam.nl         */
+/*   Updated: 2023/11/25 14:05:04 by selcyilm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int		match_arg(va_list arg, const char c);
 size_t	ft_strlen(const char *str);
 int		ft_putchar(int c);
 int		ft_putstr(const char *s);
-int		ft_putpos(unsigned int nb, const char *hex);
-int		ft_hex(va_list arg, const char *hex);
+int		ft_putpos(unsigned long int nb, const char c);
+int		ft_hex(va_list arg, const char c);
 int		ft_putnbr(int nb);
+int		ft_putptr(va_list arg);
+int		ft_put_u(unsigned int nb);
 
 #endif

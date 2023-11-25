@@ -6,7 +6,7 @@
 /*   By: selcyilm <selcyilm@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/11/19 15:35:17 by selcyilm      #+#    #+#                 */
-/*   Updated: 2023/11/19 15:37:31 by selcyilm      ########   odam.nl         */
+/*   Updated: 2023/11/25 14:10:54 by selcyilm      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,32 @@ int	ft_putstr(const char *s)
 	return (ft_strlen(s));
 }
 
-int	ft_hex(va_list arg, const char *hex)
+int	ft_hex(va_list arg, const char c)
 {
+	unsigned int	hex;
+
+	hex = va_arg(arg, unsigned int);
+	return (ft_putpos(hex, c));
+}
+
+int	ft_putpos(unsigned long int arg, const char c)
+{
+	int	i;
 	int	len;
 
 	len = 0;
-	len = ft_putpos((unsigned int)va_arg(arg, int), hex);
-	if (len == 0)
-		len = ft_putchar('0');
-	return (len);
-}
-
-int	ft_putpos(unsigned int nb, const char *hex)
-{
-	int			a;
-	int			len;
-	long long	tmp;
-
-	tmp = (long long)nb;
-	if (tmp < 0)
-	{
-		write(1, "-", 1);
-		len = 1;
-		tmp *= -1;
-	}
-	if (tmp != 0)
-	{
-		a = nb % ft_strlen(hex);
-		len += ft_putpos(tmp / ft_strlen(hex), hex) + 1;
-		write(1, &hex[a], 1);
-		return (len);
-	}
+	i = arg % 16;
+	if (arg >= 16)
+		len += ft_putpos(arg / 16, c);
+	if (i < 10)
+		i += 48;
 	else
-		return (0);
+	{
+		if (c == 'X')
+			i += 55;
+		else
+			i += 87;
+	}
+	len += write(1, &i, 1);
+	return (len);
 }
